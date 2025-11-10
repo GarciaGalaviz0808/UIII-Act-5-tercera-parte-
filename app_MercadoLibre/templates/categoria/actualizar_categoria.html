@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card card-soft p-4">
+  <h4>Actualizar Categoría</h4>
+  <form method="post" action="{% url 'realizar_actualizacion_categoria' categoria.id_categoria %}">
+    {% csrf_token %}
+    <div class="mb-2">
+      <label class="form-label">Nombre</label>
+      <input type="text" name="nombre" class="form-control" value="{{ categoria.nombre }}">
+    </div>
+    <div class="mb-2">
+      <label class="form-label">Descripción</label>
+      <textarea name="descripcion" class="form-control" rows="3">{{ categoria.descripcion }}</textarea>
+    </div>
+    <div class="mb-2">
+      <label class="form-label">Tipo</label>
+      <input type="text" name="tipo" class="form-control" value="{{ categoria.tipo }}">
+    </div>
+    <div class="mb-2">
+      <label class="form-label">Imagen (URL)</label>
+      <input type="url" name="img_url" class="form-control" value="{{ categoria.img_url }}">
+    </div>
+    <div class="form-check mb-2">
+      <input class="form-check-input" type="checkbox" id="activa" name="activa" {% if categoria.activa %}checked{% endif %}>
+      <label class="form-check-label" for="activa">Activa</label>
+    </div>
+    <button class="btn btn-primary mt-2">Guardar</button>
+    <a href="{% url 'ver_categoria' %}" class="btn btn-secondary mt-2">Cancelar</a>
+  </form>
+</div>
+{% endblock %}

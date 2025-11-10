@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card card-soft p-4">
+  <h4>Agregar Vendedor</h4>
+  <form method="post">
+    {% csrf_token %}
+    <div class="mb-2">
+      <label class="form-label">Nombre</label>
+      <input type="text" name="nombre" class="form-control" required>
+    </div>
+    <div class="mb-2">
+      <label class="form-label">Apellido</label>
+      <input type="text" name="apellido" class="form-control" required>
+    </div>
+    <div class="mb-2">
+      <label class="form-label">Email</label>
+      <input type="email" name="email" class="form-control" required>
+    </div>
+    <div class="mb-2">
+      <label class="form-label">Teléfono</label>
+      <input type="text" name="telefono" class="form-control">
+    </div>
+    <div class="mb-2">
+      <label class="form-label">Dirección</label>
+      <input type="text" name="direccion" class="form-control">
+    </div>
+    <div class="mb-2">
+      <label class="form-label">Ciudad</label>
+      <input type="text" name="ciudad" class="form-control">
+    </div>
+    <button class="btn btn-primary mt-2">Agregar</button>
+    <a href="{% url 'ver_vendedor' %}" class="btn btn-secondary mt-2">Cancelar</a>
+  </form>
+</div>
+{% endblock %}

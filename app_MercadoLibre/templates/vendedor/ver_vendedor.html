@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card card-soft p-3">
+  <div class="d-flex justify-content-between mb-3">
+    <h4>Vendedores</h4>
+    <a class="btn btn-success" href="{% url 'agregar_vendedor' %}"><i class="bi bi-plus-lg"></i> Nuevo</a>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-hover">
+      <thead class="table-light">
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Email</th>
+          <th>Teléfono</th>
+          <th>Ciudad</th>
+          <th>Fecha Registro</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for v in vendedores %}
+        <tr>
+          <td>{{ v.id_vendedor }}</td>
+          <td>{{ v.nombre }} {{ v.apellido }}</td>
+          <td>{{ v.email }}</td>
+          <td>{{ v.telefono }}</td>
+          <td>{{ v.ciudad }}</td>
+          <td>{{ v.fecha_registro }}</td>
+          <td>
+            <a class="btn btn-sm btn-info" href="{% url 'actualizar_vendedor' v.id_vendedor %}">Editar</a>
+            <a class="btn btn-sm btn-danger" href="{% url 'borrar_vendedor' v.id_vendedor %}">Borrar</a>
+          </td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="7" class="text-center">No hay vendedores aún.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card card-soft p-3">
+  <div class="d-flex justify-content-between mb-3">
+    <h4>Categorías</h4>
+    <a class="btn btn-success" href="{% url 'agregar_categoria' %}"><i class="bi bi-plus-lg"></i> Nuevo</a>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-hover align-middle">
+      <thead class="table-light">
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Tipo</th>
+          <th>Activa</th>
+          <th>Fecha</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for c in categorias %}
+        <tr>
+          <td>{{ c.id_categoria }}</td>
+          <td>
+            {{ c.nombre }}
+            {% if c.img_url %}
+              <div class="small text-muted"> <a href="{{ c.img_url }}" target="_blank">Ver imagen</a></div>
+            {% endif %}
+          </td>
+          <td>{{ c.tipo }}</td>
+          <td>{% if c.activa %}Sí{% else %}No{% endif %}</td>
+          <td>{{ c.fecha_creacion }}</td>
+          <td>
+            <a class="btn btn-sm btn-info" href="{% url 'actualizar_categoria' c.id_categoria %}">Editar</a>
+            <a class="btn btn-sm btn-danger" href="{% url 'borrar_categoria' c.id_categoria %}">Borrar</a>
+          </td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="6" class="text-center">No hay categorías aún.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

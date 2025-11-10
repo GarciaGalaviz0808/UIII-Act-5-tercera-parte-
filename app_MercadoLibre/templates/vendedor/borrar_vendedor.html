@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card card-soft p-4">
+  <h4>¿Eliminar vendedor?</h4>
+  <p>Estás por eliminar a: <strong>{{ vendedor.nombre }} {{ vendedor.apellido }}</strong></p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Sí, eliminar</button>
+    <a href="{% url 'ver_vendedor' %}" class="btn btn-secondary">Cancelar</a>
+  </form>
+</div>
+{% endblock %}
